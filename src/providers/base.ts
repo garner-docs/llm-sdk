@@ -1,4 +1,9 @@
-import { LLMConfig, ChatMessage, CompletionResponse } from "../types";
+import {
+  LLMConfig,
+  ChatMessage,
+  CompletionResponse,
+  StreamingResponse,
+} from "../types";
 
 export abstract class BaseLLMProvider {
   protected config: LLMConfig;
@@ -9,4 +14,9 @@ export abstract class BaseLLMProvider {
 
   abstract chat(messages: ChatMessage[]): Promise<CompletionResponse>;
   abstract complete(prompt: string): Promise<CompletionResponse>;
+  abstract stream(
+    messages: ChatMessage[],
+    onToken: (response: StreamingResponse) => void,
+    onError?: (error: Error) => void
+  ): Promise<void>;
 }
