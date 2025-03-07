@@ -20,3 +20,9 @@ export interface CompletionResponse {
   };
   model: string;
 }
+
+export interface StreamingResponse {
+  content: string;
+  isComplete: boolean;
+  model?: string;
+}
